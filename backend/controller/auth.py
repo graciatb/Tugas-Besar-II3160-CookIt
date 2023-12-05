@@ -1,8 +1,8 @@
 import requests
 
 def getToken():
-    url = 'http://127.0.0.1:8000/login'
-    data = {"username": "admin@gmail.com", "password": "admin"}
+    url = 'https://tst-api-order-production.up.railway.app/login'
+    data = {"username": "admin10@gmail.com", "password": "admin10"}
     response = requests.post(url, data=data)
     jsonresponse = response.json()
     bearertoken = str(jsonresponse['access_token'])

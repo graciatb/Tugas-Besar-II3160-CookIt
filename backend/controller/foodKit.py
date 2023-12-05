@@ -1,6 +1,7 @@
 from fuzzywuzzy import fuzz
 from .recipe import *
 from .product import *
+import random
 
 def getIngredients(recipe_id: int):
     recipe = idRecipe(recipe_id)
@@ -21,4 +22,10 @@ def searchIngredients(recipe_id: int):
             if product["product_name"] in ingredient:
                 recommendation_list.append(product)
     return recommendation_list
-    
+
+def getRecommendations(recipe_id: int):
+    recommendation_list = searchIngredients(recipe_id)
+    count = len(recommendation_list)
+    if count > 5:
+        recommendation_list = random.sample(recommendation_list, 5)
+    return recommendation_list

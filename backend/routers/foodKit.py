@@ -9,11 +9,11 @@ from ..controller.foodKit import *
 router = APIRouter(
     prefix = "/foodKit",
     tags = ['FoodKit']
-)
+)   
 
 @router.get("/{id}")
 def get_recommendations(id: int):
-    return 0
+    return getRecommendations(id)
 
 @router.get("/ingredients/{id}")
 def get_ingredients(id: int):
