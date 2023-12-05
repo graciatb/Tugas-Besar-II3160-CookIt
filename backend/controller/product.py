@@ -4,13 +4,13 @@ import json
 from ..controller.auth import getFormat, postFormat
 
 def allProducts():
-    url = "http://localhost:8000/products/"
+    url = "https://tst-api-order-production.up.railway.app/products/"
     return getFormat(url)
 
 def idProduct(id: int):
-    url = f"http://localhost:8000/products/{id}"
+    url = f"https://tst-api-order-production.up.railway.app/products/{id}"
     return getFormat(url)
 
 def createProduct():
-    url = "http://localhost:8000/products/"
+    url = "https://tst-api-order-production.up.railway.app/products/"
     return postFormat(url)

@@ -4,13 +4,13 @@ import json
 from ..controller.auth import getFormat
 
 def allContents():
-    url = "http://localhost:8080/content/"
+    url = "http://recipe-it.cxhpffgzgkhabfav.eastus.azurecontainer.io/content/"
     return getFormat(url)
 
 def latestContent():
-    url = "http://localhost:8080/content/latest"
+    url = "http://recipe-it.cxhpffgzgkhabfav.eastus.azurecontainer.io/content/latest"
     return getFormat(url)
 
 def idContent(id: int):
-    url = f"http://localhost:8080/content/{id}"
+    url = f"http://recipe-it.cxhpffgzgkhabfav.eastus.azurecontainer.io/content/{id}"
     return getFormat(url)

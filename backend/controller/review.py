@@ -4,13 +4,13 @@ import json
 from ..controller.auth import getFormat
 
 def allReviews():
-    url = "http://localhost:8080/review/"
+    url = "http://recipe-it.cxhpffgzgkhabfav.eastus.azurecontainer.io/review/"
     return getFormat(url)
 
 def reviewByUser(id: int):
-    url = f"http://localhost:8080/review/user/{id}"
+    url = f"http://recipe-it.cxhpffgzgkhabfav.eastus.azurecontainer.io/review/user/{id}"
     return getFormat(url)
 
 def reviewByRecipe(id: int):
-    url = f"http://localhost:8080/review/recipe/{id}"
+    url = f"http://recipe-it.cxhpffgzgkhabfav.eastus.azurecontainer.io/review/recipe/{id}"
     return getFormat(url)
