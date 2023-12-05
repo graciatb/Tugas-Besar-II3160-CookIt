@@ -13,13 +13,16 @@ def splitIngredients(recipe_id: int):
     ingredients_list = ingredients.split(",")
     return ingredients_list
 
+def getSimilarity(ingredient: str, product: str):
+    return fuzz.ratio(ingredient, product)
+
 def searchIngredients(recipe_id: int):
     recommendation_list = []
     ingredients_list = splitIngredients(recipe_id)
     products = allProducts()
     for ingredient in ingredients_list:
         for product in products:
-            if product["product_name"] in ingredient:
+            if getSimilarity(ingredient, product["product_name"]) > 45:
                 recommendation_list.append(product)
     return recommendation_list
 
