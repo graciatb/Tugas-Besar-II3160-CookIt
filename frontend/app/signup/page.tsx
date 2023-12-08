@@ -98,6 +98,7 @@ export default function Login() {
           src="https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2018/12/Shakshuka-19.jpg"
           rounded="1rem"
           shadow="2xl"
+          alt="Shakshuka"
         />
       </Box>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>

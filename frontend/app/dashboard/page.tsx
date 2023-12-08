@@ -51,7 +51,7 @@ export default function Recipe() {
           </Flex>
         </Flex>
         {recipes?.map((recipe: any) => (
-          <Card bg="gray.50" h="32" justify="center" p="3">
+          <Card key={recipe.product_id} bg="gray.50" h="32" justify="center" p="3">
             <CardBody>
               <Flex justifyContent="space-between">
                 <Box>

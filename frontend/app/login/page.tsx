@@ -72,6 +72,7 @@ export default function Login() {
           src="https://d1ralsognjng37.cloudfront.net/81ef2e6a-95d0-423b-a5cc-d84d41d71c2a.webp"
           rounded="1rem"
           shadow="2xl"
+          alt="Shakshuka"
         />
       </Box>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>

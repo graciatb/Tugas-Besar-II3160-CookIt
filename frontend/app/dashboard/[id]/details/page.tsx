@@ -46,7 +46,7 @@ export default function Recipe({ params }: { params: { id: string } }) {
       }
     };
     fetchRecipe();
-  }, []);
+  });
 
   useEffect(() => {
     const fetchFoodKit = async () => {
@@ -65,7 +65,7 @@ export default function Recipe({ params }: { params: { id: string } }) {
       }
     };
     fetchFoodKit();
-  }, []);
+  });
 
   const handleOrder = async (id: any) => {
     try {
@@ -172,7 +172,7 @@ export default function Recipe({ params }: { params: { id: string } }) {
         </Flex>
         <Grid templateColumns="repeat(5, 1fr)" gap={2} mt="3">
           {foodKit?.map((food: any) => (
-            <Card bg="gray.50" h="64" align="center">
+            <Card key={food.product_id} bg="gray.50" h="64" align="center">
               <Text mt="4" fontSize="lg" fontWeight="semibold">
                 {food.product_name}
               </Text>
