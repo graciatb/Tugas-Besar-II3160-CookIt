@@ -26,8 +26,14 @@ def get_order(id:int, token: str = Depends(oauth2.get_current_user_token)):
     order = requests.get(url, headers={"Authorization": f"Bearer {token}"}).json()
     return order
 
+
 @router.post('/', status_code=status.HTTP_201_CREATED)
-def create_order(request: schemas.Order, token: str = Depends(oauth2.get_current_user_token)):
-    url = "https://tst-api-order-production.up.railway.app/orders/"
-    response = requests.post(url, headers = {"Authorization": f"Bearer {token}", "Content-Type":"application/json"}, json=request.model_dump()).json()
+async def create_order(request: schemas.Order, token: str = Depends(oauth2.get_current_user_token)):
+    headers = {
+    'Authorization': f'Bearer {token}',
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+    }
+    url = 'https://tst-api-order-production.up.railway.app/orders/'
+    response = requests.post(url, headers = headers, json=request.model_dump())
     return response

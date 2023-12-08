@@ -34,6 +34,10 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: Optional[str] = None
 
+class Order(BaseModel):
+    product_id: int
+    quantity: int
+
 class FoodContentBase(BaseModel):
     title: str
     desc: str
@@ -42,10 +46,6 @@ class FoodContentBase(BaseModel):
 
 class ContentCreate(FoodContentBase):
     pass
-
-class Order(BaseModel):
-    product_id: int
-    quantity: int
 
 class RecipeBase(BaseModel):
     id: int

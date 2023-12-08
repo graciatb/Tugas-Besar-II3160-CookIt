@@ -15,7 +15,7 @@ router = APIRouter(
 
 # Create User
 @router.post("/", status_code = status.HTTP_201_CREATED)
-def create_user(user: schemas.User, db: Session = Depends(get_db), ):
+def create_user(user: schemas.User, db: Session = Depends(get_db)):
     return create(user, db)
 
 # Get User
@@ -24,6 +24,6 @@ def get_user(id: int, db: Session = Depends(get_db)):
     return get(id, db)
 
 # Delete User
-@router.delete('/user/{id}', status_code=status.HTTP_204_NO_CONTENT)
+@router.delete('/{id}', status_code=status.HTTP_204_NO_CONTENT)
 def delete_user(id: int, db: Session = Depends(get_db), get_current_user: schemas.User = Depends(oauth2.get_current_user)):
     return delete(id, db)
