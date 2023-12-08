@@ -3,11 +3,16 @@ from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
 from .. import models, schemas, utils
 from ..database import get_db
-
+import requests
 
 # Create User
 def create(user: schemas.User, db: Session = Depends(get_db)):
-    print(user)
+    if db.query(models.User).filter(models.User.email == user.email).first():
+        raise HTTPException(status_code = status.HTTP_400_BAD_REQUEST, detail = f"User with email: {user.email} already exists")
+    url = "https://tst-api-order-production.up.railway.app/users/"
+    response = requests.post(url, json=user.model_dump()).json()
+    url2 = "http://recipe-it.cxhpffgzgkhabfav.eastus.azurecontainer.io/users/"
+    response2 = requests.post(url2, json=user.model_dump()).json()
     hashed_password = utils.hash(user.password)
     user.password = hashed_password 
     

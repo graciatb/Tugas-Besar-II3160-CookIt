@@ -32,4 +32,34 @@ class Token(BaseModel):
     token_type: str
 
 class TokenData(BaseModel):
-    id: Optional[int] = None
+    email: Optional[str] = None
+
+class FoodContentBase(BaseModel):
+    title: str
+    desc: str
+    topic: str
+    published: bool = True
+
+class ContentCreate(FoodContentBase):
+    pass
+
+class Order(BaseModel):
+    product_id: int
+    quantity: int
+
+class RecipeBase(BaseModel):
+    id: int
+    title: str
+    level: str
+    category: str
+    ingredients: str
+    directions: str
+    published: bool = True
+
+class RecipeCreate(BaseModel):
+    title: str
+    level: str
+    category: str
+    ingredients: str
+    directions: str
+    published: bool = True

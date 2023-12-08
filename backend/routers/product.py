@@ -1,9 +1,6 @@
-from fastapi import Response, status, HTTPException, Depends, APIRouter
-from ..controller.product import *
-from sqlalchemy.orm import Session
-from typing import List, Optional
-from .. import schemas, models, oauth2
-from ..database import get_db
+from fastapi import status, Depends, APIRouter
+from .. import schemas, oauth2
+import requests
 
 router = APIRouter(
     prefix="/products",
@@ -11,21 +8,13 @@ router = APIRouter(
 )
 
 @router.get('/')
-def get_all_products(db: Session = Depends(get_db)):
-    return allProducts()
+def get_all_products(token: str = Depends(oauth2.get_current_user_token)):
+    url = "https://tst-api-order-production.up.railway.app/products/"
+    products = requests.get(url, headers={"Authorization": f"Bearer {token}"}).json()
+    return products
 
 @router.get('/{id}')
-def get_product(id:int, db: Session = Depends(get_db)):
-    return idProduct(id)
-
-@router.post('/', status_code=status.HTTP_201_CREATED)
-def create_product(db: Session = Depends(get_db), current_user : schemas.User = Depends(oauth2.get_current_user)):
-    return createProduct()
-
-@router.put('/{id}', status_code=status.HTTP_202_ACCEPTED)
-def update_product(id:int, db: Session = Depends(get_db), current_user : schemas.User = Depends(oauth2.get_current_user)):
-    return idProduct(id)
-
-@router.delete('/{id}', status_code=status.HTTP_204_NO_CONTENT)
-def delete_product(id:int, db: Session = Depends(get_db)):
-    return idProduct(id)
+def get_product(id:int, token: str = Depends(oauth2.get_current_user_token)):
+    url = f"https://tst-api-order-production.up.railway.app/products/{id}"
+    product = requests.get(url, headers={"Authorization": f"Bearer {token}"}).json()
+    return product
